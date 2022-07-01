@@ -14,6 +14,6 @@ twoCptNL_run.py
 * ITD can be varied
 
 supporting files are:
-* twoCptODE.c: c code that executes the NL model
+* twoCptNL.c: c code that executes the NL model
 * figureData.mat: data used in twoCptNL_figs to recreate figures in paper
 * gNaData.csv: database of gNa values for various coupling configurations and Na inactivation curves
