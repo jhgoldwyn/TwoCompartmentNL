@@ -5,7 +5,7 @@ Matlab files that accompany "Dynamics of the continuity illusion" by Bennett Dru
 Manuscript available on bioRxiv at
 
 twoCptNL_figs.m
-* can be run in sections to reproduce figures in the manuscript
+* reproduce figures in the manuscript
 
 twoCptNL_run.py
 * run the NL model described in the manuscript
