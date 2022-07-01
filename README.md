@@ -1,11 +1,15 @@
 # TwoCompartmentNL
 
-Matlab files that accompany "Dynamics of the continuity illusion" by Bennett Drucker and Joshua H. Goldwyn (Swarthmore College)
+Code and data files that accompany
+Structure and dynamics that specialize neurons for high-frequency coincidence detection in the barn owl nucleus laminaris
+by Bennett Drucker and Joshua H. Goldwyn (Swarthmore College)
 
-Manuscript available on bioRxiv at
+Manuscript available on bioRxiv
+
+Repository contains:
 
 twoCptNL_figs.m
-* reproduce figures in the manuscript
+* run to reproduce figures in the manuscript
 
 twoCptNL_run.py
 * run the NL model described in the manuscript
