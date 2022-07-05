@@ -8,16 +8,16 @@ Manuscript available on bioRxiv
 
 Repository contains:
 
-twoCptNL_figs.m
+twoCptNL_figs.m [matlab]
 * run to reproduce figures in the manuscript
 
-twoCptNL_run.py
+twoCptNL_run.py [python and c]
 * run the NL model described in the manuscript
 * inputs types can be varied (synaptic conductance, sinusoidal conductance, or sinusoidal current)
 * coupling configuration and Na inactivation can be varied (see manuscript for details)
 * ITD can be varied
 
-integrateFire_run.py
+integrateFire_run.m [matlab]
 * runs the nonlinear integrate-and-fire model described in the manuscript
 
 supporting files are:
