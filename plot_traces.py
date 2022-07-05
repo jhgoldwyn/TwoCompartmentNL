@@ -98,14 +98,9 @@ def main_syn(iteration, param_dict):
 
     # parameterize twoCpt model
     areaRatio = 20./2400.  # Funabiki Table 3
-    # vRest = -68. # [units:mV] resting potential used in Funabiki model, but note pg 15246 says -58 mV in recordings
-    # R1 = 9 # [units: MegaOhms] soma input resistance. used in Funabiki model, but note pg 15253 say 10 MOhm in recordings
-    # tauExp = 0.2 # [units:ms] membrane time constant used in model. but note Funabiki pg 15249 says 0.1 ms
-    vRest = - \
-        62.  # [units:mV] resting potential used in Funabiki model, but note pg 15246 says -58 mV in recordings
-    R1 = 5.  # [units: MegaOhms] soma input resistance. used in Funabiki model, but note pg 15253 say 10 MOhm in recordings
-    # [units:ms] membrane time constant used in model. but note Funabiki pg 15249 says 0.1 ms
-    tauExp = 0.1
+    vRest = -62.  # [units:mV] 
+    R1 = 5.  # [units: MegaOhms] 
+    tauExp = 0.1 # [units:ms]
 
     # Passive conductance [units: nS] #
     gAx = (1000./R1) * couple21 / (1.-couple12*couple21)  # axial conductance #
@@ -156,15 +151,11 @@ def main_syn(iteration, param_dict):
 
     # create synaptic input
     t = arange(tStart, tEnd, 1.e-4)
-    # arg is between 0 and 99. #
-    # gSyn = NMsynapse(t,1.e-4,f,ipd)
     gSyn = txt_to_list(1, ipd, lin_interp_fact)
     # save to txt file
     try:
         savetxt("C_Intermediate_Output/NMfile-%s.txt" %
                (str(getpid())), gSyn, fmt="%f")
-        # savetxt("../C/C_Intermediate_Output/NMfile-%s.txt" %
-        #        (str(getpid())), gSyn, fmt="%f")
     except Exception as e:
         print(e)
         exit(1)
@@ -194,8 +185,6 @@ def main_syn(iteration, param_dict):
     try:
         file = open("C_Intermediate_Output/Voltages-gNa=%.3f-%s.txt" %
                 (gNa, str(getpid())), "r")
-        # file = open("../C/C_Intermediate_Output/Voltages-gNa=%.3f-%s.txt" %
-        #         (gNa, str(getpid())), "r")
     except Exception as e:
         print(e)
         exit(1)
@@ -223,38 +212,6 @@ def main_syn(iteration, param_dict):
 
     make_plot(t, v1, v2, couple12, couple21, hDenom, Iteration=iteration,IPD=ipd)
 
-
-
-# NM synaptic input
-def NMsynapse(t,dt,f,IPD):
-    nt = size(t)
-    H = 1.3 # nS , peak EPSG
-    W = 0.1 # ms , EPSG width
-    kap = 1.516 # von Mises shape parameter [for VS =.6 at 4kHz]
-    tauSyn = W/2.446
-    nNM = 150 # number of NM inputs per side
-    lam0 = 500. # Hz , baseline input rate
-    ITD = IPD*(1000./f) # IPD takes values 0 to .5 for out phase
-    rv = vonmises(kap)
-    print("in-function ITD:", ITD)
-    y1 = rv.pdf(2.*pi*f*(t+ITD/2.)/1000.)
-    y2 = rv.pdf(2.*pi*f*(t-ITD/2.)/1000.)
-    probSpike = 2.*pi*(lam0/1000.)*(y1+y2)*dt
-
-    r = uniform.rvs(size=[nt,nNM])#, random_state=rng)
-    nInput = zeros_like(t)
-    for i in arange(nt):
-        print(i,nt)
-        nInput[i] = sum(probSpike[i]>r[i,:])
-
-    na = round(10*W/dt)
-    alphaFunc = (H*t[:na]/tauSyn)*exp(1.-t[:na]/tauSyn)
-    
-    c = convolve(alphaFunc,nInput)
-    gSyn = zeros_like(t)
-    gSyn = c[:nt]
-
-    return gSyn
 
 def twoCptODE(t, x, couple12, couple21, DC, AC, f, gna, hDenom_):
     """Function twoCptODE: Definition of the two compartment differential equation 
@@ -300,11 +257,9 @@ def twoCptODE(t, x, couple12, couple21, DC, AC, f, gna, hDenom_):
 
     # fixed parameter values #
     areaRatio = 20./2400.  # Funabiki Table 3
-    vRest = - \
-        62.  # [units:mV] resting potential used in Funabiki model, but note pg 15246 says -58 mV in recordings
-    R1 = 5  # [units: MegaOhms] soma input resistance. used in Funabiki model, but note pg 15253 say 10 MOhm in recordings
-    # [units:ms] membrane time constant used in model. but note Funabiki pg 15249 says 0.1 ms
-    tauExp = 0.1
+    vRest = -62.  # [units:mV] 
+    R1 = 5  # [units: MegaOhms]
+    tauExp = 0.1 # [units:ms] 
 
     # Passive conductance [units: nS] #
     gAx = (1000./R1) * couple21 / (1.-couple12*couple21)  # axial conductance #
@@ -381,9 +336,6 @@ def twoCptODE(t, x, couple12, couple21, DC, AC, f, gna, hDenom_):
     dd2 = phi * (alphad(v2)*(1.-d2) - betad(v2)*d2)
     dn = phi * (alphan(v2)*(1.-n) - betan(v2)*n)
     dm = phi * (alpham(v2)*(1.-m) - betam(v2)*m)
-
-    # OLD dh  = phi * ( alphah(v2)*(1.-h) - betah(v2)*h )
-    # NEW v v v
     dh = phi * (hinf(v2)-h) / tauh(v2)
 
     dx = [dv1, dv2, dd1, dd2, dn, dm, dh]
