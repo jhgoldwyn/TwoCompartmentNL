@@ -39,7 +39,7 @@ To plot using sinusoidal input using no pre-run initial values, run
 > python3 plot_traces.py --mode sin --init-values no-input -L
 
 To plot using sinusoidal input using initial values obtained by an initial run, run
-> python3 Plotting/plot_traces.py --mode sin --init-values run-before -L
+> python3 plot_traces.py --mode sin --init-values run-before -L
 
 *To modify parameter values:*
 * Make changes to parameter values in the "args_dict" structures at the bottom of plot_traces.py.  Modify the correct dictionary, depending on whether you are using synaptic or sinusoidal inputs. 
