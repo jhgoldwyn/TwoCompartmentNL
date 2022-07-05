@@ -19,7 +19,6 @@ def txt_to_list(iteration, IPD, lin_interp_fact):
     filename = None
     try:  # try to open the file
         filename = "%d_ITD_%.2f.nmlib" % (iteration, IPD)
-        # filename = "../C/NM_lib/%d_ITD_%.2f.nmlib" % (iteration, IPD)
         fp = open(filename, "r")
     except Exception as e:
         print("Error:", e)
