@@ -105,7 +105,7 @@ int main(int argc, char *argv[])
     
         /* synaptic input */
         fgets(nmstr,20, NMfile);
-	gsyn = atof(nmstr); //-(DC + AC*math.sin(2.*math.pi*t*f/1000.)) // (phase shift parameter)
+	gsyn = atof(nmstr);
         isyn[0] = gsyn*(v[0]-esyn);
         isyn[1] = 0.;
 
