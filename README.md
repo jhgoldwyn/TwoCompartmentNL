@@ -30,7 +30,6 @@ integrateFire_run.m [matlab]
 * gNaData.csv: database of gNa values for various coupling configurations and Na inactivation curves
 
 ## Instructions for running NL model using plot_traces program:
-
 To plot using synaptic input, run:
 > python3 plot_traces.py --mode syn -L
 
