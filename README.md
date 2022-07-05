@@ -17,6 +17,9 @@ twoCptNL_run.py
 * coupling configuration and Na inactivation can be varied (see manuscript for details)
 * ITD can be varied
 
+integrateFire_run.py
+* runs the nonlinear integrate-and-fire model described in the manuscript
+
 supporting files are:
 * twoCptNL.c: c code that executes the NL model
 * figureData.mat: data used in twoCptNL_figs to recreate figures in paper
