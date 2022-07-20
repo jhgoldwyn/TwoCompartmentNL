@@ -1,7 +1,7 @@
 # TwoCompartmentNL
 
 Code and data files that accompany
-Structure and dynamics that specialize neurons for high-frequency coincidence detection in the barn owl nucleus laminaris
+"Structure and dynamics that specialize neurons for high-frequency coincidence detection in the barn owl nucleus laminaris"
 by Ben Drucker and Joshua H. Goldwyn (Swarthmore College)
 
 Manuscript available on bioRxiv
