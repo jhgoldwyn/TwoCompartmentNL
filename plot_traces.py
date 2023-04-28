@@ -178,7 +178,6 @@ def main_syn(iteration, param_dict):
     runIt += ' ' + str(hDenom)
     runIt += ' ' + str(getpid())
 
-    #system("cd ../C; " + runIt + "; cd ../Plotting")
     system(runIt)
     
     # load data and plot
